@@ -24,8 +24,13 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            print(APIConfig.shared.tmdbBaseURL)
-            print(APIConfig.shared.tmdbAPIKey)
+            if let config = APIConfig.shared {
+                // since APIConfig.shared is optional, we MUST unwrap it use it.
+                // this means we check if it's "nil" ; if it's not we can print
+                // it's properties
+                print(config.tmdbAPIKey)
+                print(config.tmdbBaseURL)
+            }
         }
     }
 }
